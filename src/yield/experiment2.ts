@@ -29,8 +29,12 @@ type EffectRequest<TResponse> = { effect: Effect };
 export async function runScript(generator: Generator<EffectRequest<unknown>>) {
   let result = generator.next();
   while (!result.done) {
-    const effectResult = await handleEffectRequest(result.value);
-    result = generator.next(effectResult);
+    try {
+      const effectResult = await handleEffectRequest(result.value);
+      result = generator.next(effectResult);
+    } catch (e) {
+      generator.throw(e);
+    }
   }
 }
 
@@ -52,8 +56,17 @@ async function handleEffectRequest<TResponse>(
 export function* userAge() {
   // inferred type is correct.
   const user = yield* Y(getUser("1"));
+  const moreUsers = yield* getTwoUsers("1", "2");
+  const moreUsers2 = yield* getTwoUsers("3", "4");
   const user2 = yield* Y(getUser2("1"));
+  // const result = yield fetch("http://www.sunet.se");
   return [user.age, user2.age];
+}
+
+function* getTwoUsers(id1: string, id2: string) {
+  const u1 = yield* Y(getUser(id1));
+  const u2 = yield* Y(getUser(id2));
+  return [u1, u2];
 }
 
 export async function main() {

@@ -40,7 +40,7 @@ async function handleEffectRequest<TResponse>(
   }
 }
 
-export async function userAge(doEffect: DoEffectFn): Promise<[number, number]> {
+export async function userAge(doEffect: DoEffectFn) {
   // inferred type is correct.
   const user = await doEffect(getUser("1"));
   const user2 = await doEffect(getUser2("1"));

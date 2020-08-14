@@ -1,42 +1,6 @@
 import { getUser, EffectRequest, getUser2 } from "../shared/effect-descriptors";
-
-function makeTypesafeYielder<Produce, Send>(
-  _psudoCallSignature: (y: Produce) => Send
-) {
-  function* yielder(arg: Produce): Generator<Produce, Send, Send> {
-    return yield arg;
-  }
-  return yielder;
-}
-type Y = <TResponse>(p: EffectRequest<TResponse>) => TResponse;
-const Y = makeTypesafeYielder({} as Y);
-
-export async function runScript(generator: Generator<EffectRequest<unknown>>) {
-  let result = generator.next();
-  while (!result.done) {
-    try {
-      const effectResult = await handleEffectRequest(result.value);
-      result = generator.next(effectResult);
-    } catch (e) {
-      generator.throw(e);
-    }
-  }
-}
-
-async function handleEffectRequest<TResponse>(
-  effReq: EffectRequest<TResponse>
-): Promise<TResponse> {
-  const effect = effReq.effect;
-  switch (effect.type) {
-    case "UserEffect":
-      return Promise.resolve({ id: "", age: 0 } as any);
-    case "User2Effect":
-      return Promise.resolve({} as any);
-    default:
-      const x: never = effect;
-      throw new Error("Invalid type");
-  }
-}
+import { effectToPromise } from "../shared/effect-to-promise";
+import { Y } from "./typing-work-around";
 
 export function* userAge() {
   // inferred type is correct.
@@ -59,4 +23,16 @@ function* getTwoUsers(id1: string, id2: string) {
 export async function main() {
   const result = await runScript(userAge());
   console.log(result);
+}
+
+export async function runScript(generator: Generator<EffectRequest<unknown>>) {
+  let result = generator.next();
+  while (!result.done) {
+    try {
+      const effectResult = await effectToPromise(result.value);
+      result = generator.next(effectResult);
+    } catch (e) {
+      generator.throw(e);
+    }
+  }
 }

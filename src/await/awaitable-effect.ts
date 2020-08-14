@@ -1,4 +1,5 @@
 import { EffectRequest, getUser, getUser2 } from "../shared/effect-descriptors";
+import { effectToPromise } from "../shared/effect-to-promise";
 
 type DoEffectFn = <TResponse>(
   effReq: EffectRequest<TResponse>
@@ -7,29 +8,6 @@ type ScriptFn<TReturn> = (
   doEffect: DoEffectFn,
   ...args: unknown[]
 ) => Promise<TReturn>;
-
-export async function runScript<TReturn>(
-  script: ScriptFn<TReturn>,
-  args: unknown[]
-) {
-  const result = await script(handleEffectRequest, ...args);
-  return result;
-}
-
-async function handleEffectRequest<TResponse>(
-  effReq: EffectRequest<TResponse>
-): Promise<TResponse> {
-  const effect = effReq.effect;
-  switch (effect.type) {
-    case "UserEffect":
-      return Promise.resolve({ id: "", age: 0 } as any);
-    case "User2Effect":
-      return Promise.resolve({} as any);
-    default:
-      const x: never = effect;
-      throw new Error("Invalid type");
-  }
-}
 
 export async function userAge(doEffect: DoEffectFn) {
   // inferred type is correct.
@@ -60,4 +38,12 @@ async function getTwoUsers(doEffect: DoEffectFn, id1: string, id2: string) {
 export async function main() {
   const scriptResult = await runScript(userAge, []);
   console.log(scriptResult);
+}
+
+export async function runScript<TReturn>(
+  script: ScriptFn<TReturn>,
+  args: unknown[]
+) {
+  const result = await script(effectToPromise, ...args);
+  return result;
 }

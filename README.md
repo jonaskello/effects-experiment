@@ -1,8 +1,6 @@
+# Effects Experiment
+
 Experiment with side-effects in typscript
-
-- Side-effects as generators
-
-- Side-effects as awaitable objects
 
 ## Yieldable effect
 
@@ -18,6 +16,7 @@ The function yields the effect descriptor objects and the infrastruture code res
 ### Cons
 
 - Unfamiliar syntax to most developers.
+- Cannot infer the type of yield expression based on yielded value without workaround using `yield*`.
 - It is easy to cheat with an sync effect like `console.log()`.
 
 ### Notes

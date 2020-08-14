@@ -1,28 +1,8 @@
 // Similar to The Elm Architecture
 
-import {
-  EffectRequest,
-  User,
-  User2,
-  getUser,
-  getUser2,
-} from "../shared/effect-descriptors";
+import { User, User2, getUser, getUser2 } from "../shared/effect-descriptors";
 import { effectToPromise } from "../shared/effect-to-promise";
-
-type ContinueWithEffect<TEffectResponse> = {
-  __continuation: true;
-  effect: EffectRequest<TEffectResponse>;
-  next: ContinueFn<TEffectResponse>;
-};
-
-function ContinueWithEffect<TEffectResponse>(
-  effect: EffectRequest<TEffectResponse>,
-  next: ContinueFn<TEffectResponse>
-): ContinueWithEffect<TEffectResponse> {
-  return { __continuation: true, effect, next };
-}
-
-type ContinueFn<TMyResponse> = (effectResult: TMyResponse) => unknown;
+import { ContinueWithEffect } from "./continue-with-effect";
 
 const userAge3 = (user: User) => (user2: User2) => {
   return [user.age, user2.shoeSize];

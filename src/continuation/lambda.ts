@@ -12,6 +12,14 @@ export function userAge(userId: string) {
   });
 }
 
+export const userAgeExtremeLambda = (userId: string) =>
+  ContinueWithEffect(getUser(userId), (user: User) =>
+    ContinueWithEffect(getUser2(user.id), (user2: User2) => [
+      user.age,
+      user2.shoeSize,
+    ])
+  );
+
 export async function main() {
   const result = await runScript(userAge, ["1"]);
   console.log(result);

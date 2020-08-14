@@ -1,19 +1,4 @@
-type User = { id: string; age: number };
-type User2 = { id: string; age: number; shoeSize: string };
-
-type UserEffect = { type: "UserEffect"; id: string };
-type User2Effect = { type: "User2Effect"; id: string };
-
-function getUser(id: string): EffectRequest<User> {
-  return { effect: { type: "UserEffect", id } };
-}
-function getUser2(id: string): EffectRequest<User2> {
-  return { effect: { type: "User2Effect", id } };
-}
-
-type Effect = UserEffect | User2Effect;
-
-type EffectRequest<TResponse> = { effect: Effect };
+import { EffectRequest, getUser, getUser2 } from "../shared/effect-descriptors";
 
 type DoEffectFn = <TResponse>(
   effReq: EffectRequest<TResponse>

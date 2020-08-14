@@ -12,6 +12,7 @@ The function yields the effect descriptor objects and the infrastruture code res
 
 - The effects the function can do is constrained to effects approved by the code that runs the function. It is very hard to cheat by doing an async effect in another way than yielding it.
 - Easy for the infrastructure code to run the function in steps (eg. for testing) with iterator.next().
+- Generators can be cancelled at any step but an async function cannot (minor advantage?).
 
 ### Cons
 

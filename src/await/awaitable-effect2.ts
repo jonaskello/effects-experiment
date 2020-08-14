@@ -49,9 +49,11 @@ async function handleEffectRequest<TResponse>(
 export async function userAge(doEffect: DoEffectFn) {
   // inferred type is correct.
   const user = await doEffect(getUser("1"));
+  const user2 = await doEffect(getUser2("1"));
+  // Calling sub-functions that also does effects
   const moreUsers = await getTwoUsers(doEffect, "1", "2");
   const moreUsers2 = await getTwoUsers(doEffect, "3", "4");
-  const user2 = await doEffect(getUser2("1"));
+  // It is easy to cheat here and await something that is not an effect
   const result = await fetch("http://www.sunet.se");
   return [user.age, user2.age];
 }

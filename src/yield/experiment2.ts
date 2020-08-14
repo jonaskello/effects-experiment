@@ -56,10 +56,13 @@ async function handleEffectRequest<TResponse>(
 export function* userAge() {
   // inferred type is correct.
   const user = yield* Y(getUser("1"));
+  const user2 = yield* Y(getUser2("1"));
+  // Calling sub-functions that also does effects
   const moreUsers = yield* getTwoUsers("1", "2");
   const moreUsers2 = yield* getTwoUsers("3", "4");
-  const user2 = yield* Y(getUser2("1"));
-  // const result = yield fetch("http://www.sunet.se");
+  // Cheating is not possible, we can only yield approved effects
+  // const result = await fetch("http://www.sunet.se");
+  console.log("sdasdf");
   return [user.age, user2.age];
 }
 

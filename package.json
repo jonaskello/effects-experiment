@@ -4,9 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^14.0.27",
     "typescript": "^3.9.7"
   },
+  "dependencies": {
+    "fp-ts": "^2.8.1"
+  },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start-fp-ts-1": "tsc && node lib/fp-ts/experiment1.js",
+    "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js"
   }
 }

@@ -1,3 +1,4 @@
+/*
 import { liftF, foldFree } from "fp-ts-contrib/lib/Free";
 import { Free } from "fp-ts-contrib/lib/Free";
 import { Identity, identity } from "fp-ts/lib/Identity";
@@ -64,10 +65,9 @@ export function identityInterpreter<A>(fa: Console<A>): Identity<A> {
 
 // program.foldFree(identity)(identityInterpreter);
 foldFree(program, identity)(identityInterpreter);
-/*
-What's your name?
-Hello Giulio!
-*/
+// What's your name?
+// Hello Giulio!
+
 
 // Another Interpreter
 
@@ -90,6 +90,5 @@ export function ioInterpreter<A>(fa: Console<A>): IO<A> {
 }
 
 program.foldFree(io)(ioInterpreter).run();
-/*
-  An alert, a prompt and another alert with the name you inserted will be displayed in the browser
+//   An alert, a prompt and another alert with the name you inserted will be displayed in the browser
 */

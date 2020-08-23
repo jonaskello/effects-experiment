@@ -8,6 +8,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "@algebraic-effects/core": "^0.0.3",
     "fp-ts": "^2.8.1",
     "fp-ts-contrib": "^0.1.18"
   },

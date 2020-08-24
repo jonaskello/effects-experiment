@@ -4,17 +4,22 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^26.0.10",
     "@types/node": "^14.0.27",
+    "jest": "^24.5.0",
+    "prettier": "^2.1.0",
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@algebraic-effects/core": "^0.0.3",
     "fp-ts": "^2.8.1",
     "fp-ts-contrib": "^0.1.18"
   },
   "scripts": {
     "build": "tsc",
     "start-fp-ts-1": "tsc && node lib/fp-ts/experiment1.js",
-    "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js"
+    "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js",
+    "build-core": "tsc -p src/ae-source/packages/ae-core",
+    "build-utils": "tsc -p src/ae-source/packages/ae-utils",
+    "build-task": "tsc -p src/ae-source/packages/ae-task"
   }
 }

@@ -8,11 +8,14 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "fp-ts": "^2.8.1"
+    "axios": "^0.19.2",
+    "fp-ts": "^2.8.1",
+    "io-ts": "^2.2.9"
   },
   "scripts": {
     "build": "tsc",
     "start-fp-ts-1": "tsc && node lib/fp-ts/experiment1.js",
-    "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js"
+    "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js",
+    "start-fp-ts-3": "tsc && node lib/fp-ts/experiment3.js"
   }
 }

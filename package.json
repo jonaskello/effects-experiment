@@ -11,7 +11,10 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "fp-ts": "^2.8.1",
+    "io-ts": "^2.2.9",
+    "@algebraic-effects/core": "^0.0.3",
     "fp-ts-contrib": "^0.1.18"
   },
   "scripts": {
@@ -20,6 +23,7 @@
     "start-fp-ts-2": "tsc && node lib/fp-ts/experiment2.js",
     "build-core": "tsc -p src/ae-source/packages/ae-core",
     "build-utils": "tsc -p src/ae-source/packages/ae-utils",
-    "build-task": "tsc -p src/ae-source/packages/ae-task"
+    "build-task": "tsc -p src/ae-source/packages/ae-task",
+    "start-fp-ts-3": "tsc && node lib/fp-ts/experiment3.js"
   }
 }

@@ -181,7 +181,6 @@ const liftA2 = <TFrom, TTo>(f: (x: TFrom) => (x: TTo) => TFrom) => (
 };
 
 //
-const win2 = Effect.of(window);
 const user = win
   .map((w) => w.myAppConf.selectors["user-name"])
   .chain($, undefined)

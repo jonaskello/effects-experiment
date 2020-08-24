@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@algebraic-effects/core@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@algebraic-effects/core/-/core-0.0.3.tgz#2e619c8806fb552bed16adddbd850a2b5daa903b"
+  integrity sha512-V/RL+bsKeRHEHNh6iSVghYxl+bNJAzrwEYzk8yAI47wOk9TaHYwQL+7mZd0nKowwFfejfjWgFarsC6OXVErvuw==
+
 "@types/node@^14.0.27":
   version "14.0.27"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.0.27.tgz#a151873af5a5e851b51b3b065c9e63390a9e0eb1"
@@ -27,6 +32,11 @@ follow-redirects@1.5.10:
   integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
   dependencies:
     debug "=3.1.0"
+
+fp-ts-contrib@^0.1.18:
+  version "0.1.18"
+  resolved "https://registry.yarnpkg.com/fp-ts-contrib/-/fp-ts-contrib-0.1.18.tgz#5134322ece1bb57c8435a18da3127330a5c79add"
+  integrity sha512-1JV2eLM30DI5Ptic88i7Kv9Y2RRCoZx1VCGrDHNoN/fAx4CJm4V0iF+p6aGtXxQjRZCJnlGH70gLcd+iStHuYA==
 
 fp-ts@^2.8.1:
   version "2.8.1"

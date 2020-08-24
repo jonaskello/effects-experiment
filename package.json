@@ -10,7 +10,9 @@
   "dependencies": {
     "axios": "^0.19.2",
     "fp-ts": "^2.8.1",
-    "io-ts": "^2.2.9"
+    "io-ts": "^2.2.9",
+    "@algebraic-effects/core": "^0.0.3",
+    "fp-ts-contrib": "^0.1.18"
   },
   "scripts": {
     "build": "tsc",
